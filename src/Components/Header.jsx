@@ -6,9 +6,9 @@ const Header = () => {
       <div className="w-80">
         <img src={Logo} alt="Logo" />
       </div>
-      <p className="text-gray-500">Journalism Without Fear or Favour</p>
+      <p className="text-gray-500 text-sm">Journalism Without Fear or Favour</p>
       <div>
-        <p className="text-gray-500">{moment().format("dddd, MMMM Do YYYY")}</p>
+        <p className="text-sm">{moment().format("dddd, MMMM Do YYYY")}</p>
       </div>
     </div>
   );
