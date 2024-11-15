@@ -11,13 +11,16 @@ const Navbar = () => {
         <Link to="/about">About</Link>
         <Link to="/career">Career</Link>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <div className="w-10">
           <img src={UserIcon} alt="User icon" />
         </div>
-        <button className="py-2 px-6 bg-gray-800 text-white rounded-none">
+        <Link
+          to="/auth/login"
+          className="py-2 px-6 bg-gray-800 text-white rounded-none"
+        >
           Login
-        </button>
+        </Link>
       </div>
     </div>
   );

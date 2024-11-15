@@ -1,6 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import CategoryNews from "../Components/CategoryNews";
+import AuthLayout from "../Layouts/AuthLayout";
+import Login from "../AuthPages/Login";
+import Register from "../AuthPages/Register";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +21,20 @@ const router = createBrowserRouter([
           fetch(
             `https://openapi.programming-hero.com/api/news/category/${params.id}`
           ),
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>,
       },
     ],
   },
