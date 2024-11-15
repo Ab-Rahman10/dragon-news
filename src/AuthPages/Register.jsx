@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
+  const { createNewUser, setUser } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const name = form.get("name");
+    const email = form.get("email");
+    const photo = form.get("photo");
+    const password = form.get("password");
+    console.log({ name, email, photo, password });
+
+    createNewUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+
+        console.log(errorMessage);
+      });
+  };
   return (
     <div className="w-11/12 mx-auto">
       <div className="card bg-base-100 max-w-lg shrink-0 mx-auto mt-14 p-10">
@@ -9,12 +32,13 @@ const Register = () => {
           Register your account
         </h2>
         <hr className="mt-12" />
-        <form className="card-body">
+        <form onSubmit={handleSubmit} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
             <input
+              name="name"
               type="text"
               placeholder="name"
               className="input input-bordered rounded-none"
@@ -26,6 +50,7 @@ const Register = () => {
               <span className="label-text">Photo URL</span>
             </label>
             <input
+              name="photo"
               type="text"
               placeholder="photo URL"
               className="input input-bordered rounded-none"
@@ -38,6 +63,7 @@ const Register = () => {
               <span className="label-text">Email</span>
             </label>
             <input
+              name="email"
               type="email"
               placeholder="email"
               className="input input-bordered rounded-none"
@@ -49,6 +75,7 @@ const Register = () => {
               <span className="label-text">Password</span>
             </label>
             <input
+              name="password"
               type="password"
               placeholder="password"
               className="input input-bordered rounded-none"
